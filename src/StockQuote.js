@@ -14,6 +14,7 @@ class StockQuote extends React.Component {
     currentPrice: "",
     symbolNotFound: false,
     quantity: 0,
+    message: "",
   };
 
   handleChange = (event) => {
@@ -24,8 +25,11 @@ class StockQuote extends React.Component {
 
   handleQuoteSubmit = (event) => {
     event.preventDefault();
+
+    this.setState({ message: "" });
+
     fetch("http://localhost:3000/stock_quote/" + this.state.symbol)
-      .then((res) => res.json())
+      .then((response) => response.json())
       .then((json) => {
         this.setState({
           name: json.name,
@@ -38,7 +42,33 @@ class StockQuote extends React.Component {
   };
 
   handlePurchaseSubmit = (event) => {
-    alert();
+    event.preventDefault();
+
+    const json = {
+      user_id: 1,
+      symbol: this.state.symbol,
+      total_shares: parseInt(this.state.quantity),
+      is_sell: false,
+    };
+
+    fetch("http://localhost:3000/users/1/transactions/new", {
+      headers: {
+        Authorization: "authenticity_token",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(json),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (json.message === "insufficient_balance") {
+          this.setState({ message: "Insufficient balance!" });
+        } else if (json.message === "input_error") {
+          this.setState({ message: "Input error!" });
+        } else {
+          this.setState({ message: "Success!" });
+        }
+      });
   };
 
   render() {
@@ -75,10 +105,26 @@ class StockQuote extends React.Component {
 
           {this.state.name ? (
             <StockBuy
-              formData={this.state.symbol}
+              formData={this.state.quantity}
               handleChange={this.handleChange}
               handleSubmit={this.handlePurchaseSubmit}
             />
+          ) : (
+            ""
+          )}
+
+          {this.state.message === "Success!" ? (
+            <div className="badge badge-success text-center">
+              {this.state.message}
+            </div>
+          ) : (
+            ""
+          )}
+
+          {this.state.message !== "Success!" && this.state.message ? (
+            <div className="badge badge-danger text-center">
+              {this.state.message}
+            </div>
           ) : (
             ""
           )}
