@@ -28,6 +28,8 @@ class StockQuote extends React.Component {
 
     this.setState({ message: "" });
 
+    debugger;
+
     fetch("http://localhost:3000/stock_quote/" + this.state.symbol)
       .then((response) => response.json())
       .then((json) => {

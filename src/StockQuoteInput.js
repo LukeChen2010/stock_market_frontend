@@ -4,11 +4,13 @@ import "./App.css";
 class StockQuoteInput extends React.Component {
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit}>
-        <span>Enter Symbol: </span>
+      <form className="form-inline" onSubmit={this.props.handleSubmit}>
+        <label htmlfor="symbol">Enter Symbol: </label>
         <input
           type="text"
           name="symbol"
+          id="symbol"
+          className="form-control mx-sm-3"
           style={{ width: "5rem" }}
           onChange={(event) => this.props.handleChange(event)}
           value={this.props.formData.symbol}
