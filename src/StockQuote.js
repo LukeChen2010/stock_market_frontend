@@ -13,6 +13,7 @@ class StockQuote extends React.Component {
     previousClose: "",
     currentPrice: "",
     symbolNotFound: false,
+    quantity: 0,
   };
 
   handleChange = (event) => {
@@ -21,7 +22,7 @@ class StockQuote extends React.Component {
     });
   };
 
-  handleSubmit = (event) => {
+  handleQuoteSubmit = (event) => {
     event.preventDefault();
     fetch("http://localhost:3000/stock_quote/" + this.state.symbol)
       .then((res) => res.json())
@@ -36,15 +37,19 @@ class StockQuote extends React.Component {
       });
   };
 
+  handlePurchaseSubmit = (event) => {
+    alert();
+  };
+
   render() {
     return (
-      <div className="card text-white bg-info mb-3" style={{ width: "24rem" }}>
+      <div className="card text-white bg-dark mb-3" style={{ width: "24rem" }}>
         <div className="card-header">Get a Quote!</div>
-        <div className="card-body">
+        <div className="card-body text-left">
           <StockQuoteInput
             formData={this.state.symbol}
             handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
+            handleSubmit={this.handleQuoteSubmit}
           />
 
           <StockAttribute
@@ -67,9 +72,17 @@ class StockQuote extends React.Component {
             attributeName="Current Price (USD $)"
             attributeValue={this.state.currentPrice}
           />
-        </div>
 
-        {this.state.name ? <StockBuy /> : ""}
+          {this.state.name ? (
+            <StockBuy
+              formData={this.state.symbol}
+              handleChange={this.handleChange}
+              handleSubmit={this.handlePurchaseSubmit}
+            />
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     );
   }

@@ -9,6 +9,7 @@ class StockQuoteInput extends React.Component {
         <input
           type="text"
           name="symbol"
+          style={{ width: "5rem" }}
           onChange={(event) => this.props.handleChange(event)}
           value={this.props.formData.symbol}
         />
