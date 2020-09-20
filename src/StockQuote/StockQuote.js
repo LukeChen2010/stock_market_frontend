@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "../App.css";
 import StockAttribute from "./StockAttribute.js";
 import StockQuoteInput from "./StockQuoteInput.js";
 import StockBuy from "./StockBuy.js";
@@ -28,8 +28,6 @@ class StockQuote extends React.Component {
 
     this.setState({ message: "" });
 
-    debugger;
-
     fetch("http://localhost:3000/stock_quote/" + this.state.symbol)
       .then((response) => response.json())
       .then((json) => {
@@ -53,6 +51,8 @@ class StockQuote extends React.Component {
       is_sell: false,
     };
 
+    console.log(JSON.stringify(json));
+
     fetch("http://localhost:3000/users/1/transactions/new", {
       headers: {
         Authorization: "authenticity_token",
@@ -75,11 +75,11 @@ class StockQuote extends React.Component {
 
   render() {
     return (
-      <div className="card text-white bg-dark mb-3" style={{ width: "24rem" }}>
+      <div className="card border-dark mb-3" style={{ width: "24rem" }}>
         <div className="card-header">Get a Quote!</div>
         <div className="card-body text-left">
           <StockQuoteInput
-            formData={this.state.symbol}
+            formData={this.state}
             handleChange={this.handleChange}
             handleSubmit={this.handleQuoteSubmit}
           />
@@ -107,7 +107,7 @@ class StockQuote extends React.Component {
 
           {this.state.name ? (
             <StockBuy
-              formData={this.state.quantity}
+              formData={this.state}
               handleChange={this.handleChange}
               handleSubmit={this.handlePurchaseSubmit}
             />

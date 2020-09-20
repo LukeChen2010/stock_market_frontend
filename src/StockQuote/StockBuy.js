@@ -1,23 +1,24 @@
 import React from "react";
-import "./App.css";
+import "../App.css";
 
-class StockQuoteInput extends React.Component {
+class StockBuy extends React.Component {
   render() {
     return (
       <form className="form-inline" onSubmit={this.props.handleSubmit}>
-        <label htmlfor="symbol">Enter Symbol: </label>
+        <label htmlFor="quantity">Enter Quantity to Purchase: </label>
         <input
-          type="text"
-          name="symbol"
-          id="symbol"
+          type="number"
+          min="0"
+          name="quantity"
+          id="quantity"
           className="form-control mx-sm-3"
           style={{ width: "5rem" }}
           onChange={(event) => this.props.handleChange(event)}
-          value={this.props.formData.symbol}
+          value={this.props.formData.quantity}
         />
       </form>
     );
   }
 }
 
-export default StockQuoteInput;
+export default StockBuy;
