@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import StockQuote from "./StockQuote/StockQuote.js";
 import Profile from "./Profile/Profile.js";
+import StockList from "./StockList/StockList.js";
 
 class App extends React.Component {
   render() {
@@ -9,6 +10,7 @@ class App extends React.Component {
       <div className="App">
         <Profile />
         <StockQuote />
+        <StockList />
       </div>
     );
   }
