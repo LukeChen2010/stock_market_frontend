@@ -12,7 +12,6 @@ class Profile extends React.Component {
   }
 
   fetchProfile = () => {
-    console.log("TEST");
     fetch("http://localhost:3000/users/1")
       .then((response) => response.json())
       .then((json) => {

@@ -76,7 +76,7 @@ class StockQuote extends React.Component {
   render() {
     return (
       <div className="card border-dark mb-3" style={{ width: "24rem" }}>
-        <div className="card-header">Get a Quote!</div>
+        <div className="card-header display-4">Get a Quote!</div>
         <div className="card-body text-left">
           <StockQuoteInput
             formData={this.state}
