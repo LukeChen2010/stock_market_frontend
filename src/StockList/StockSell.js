@@ -5,8 +5,11 @@ class StockSell extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {"INTERFACE TO SELL STOCK HERE" + this.props.symbol}
-        <tr></tr>
+        <tr>
+          <td colspan={8}>
+            {"INTERFACE TO SELL STOCK HERE" + this.props.symbol}
+          </td>
+        </tr>
       </React.Fragment>
     );
   }

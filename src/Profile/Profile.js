@@ -1,5 +1,6 @@
 import React from "react";
 import "../App.css";
+import ProfileAttribute from "./ProfileAttribute.js";
 
 class Profile extends React.Component {
   state = {
@@ -29,14 +30,14 @@ class Profile extends React.Component {
           <div className="card-header display-4">Your Portfolio</div>{" "}
           <div className="card-body text-left">
             <div>
-              Portfolio Value (USD $):{" "}
-              <span className="badge badge-success">
-                {this.state.portfolioValue}
-              </span>
-            </div>
-            <div>
-              Available to Spend (USD $):{" "}
-              <span className="badge badge-success">{this.state.balance}</span>{" "}
+              <ProfileAttribute
+                attributeName=" Portfolio Value (USD $): "
+                attributeValue={this.state.portfolioValue}
+              />
+              <ProfileAttribute
+                attributeName="Available to Spend (USD $):"
+                attributeValue={this.state.balance}
+              />
             </div>
           </div>
         </div>

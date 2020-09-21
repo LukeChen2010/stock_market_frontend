@@ -41,9 +41,14 @@ class StockList extends React.Component {
   render() {
     return (
       <div className="card border-dark mb-3">
-        <div className="card-header display-4">Your Stocks</div>
+        <div
+          onClick={() => this.setState({ selectedStockId: null })}
+          className="card-header display-4"
+        >
+          Your Stocks
+        </div>
         <table className="table">
-          <thead>
+          <thead onClick={() => this.setState({ selectedStockId: null })}>
             <tr>
               <th scope="col">Symbol</th>
               <th scope="col">Shares</th>

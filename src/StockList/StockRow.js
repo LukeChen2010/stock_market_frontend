@@ -2,75 +2,71 @@ import React from "react";
 import "../App.css";
 import StockSell from "./StockSell.js";
 
-class StockRow extends React.Component {
-  handleClick() {
-    this.props.selectStock(this.props.stock.id);
-  }
+const StockRow = (props) => {
+  return (
+    <React.Fragment>
+      <tr
+        onClick={() => {
+          if (props.selectedStockId === props.stock.id) {
+            props.selectStock(null);
+          } else {
+            props.selectStock(props.stock.id);
+          }
+        }}
+      >
+        <th scope="row">{props.stock.symbol}</th>
+        <td>
+          <span className="badge badge-primary">
+            {props.stock.total_shares}
+          </span>
+        </td>
+        <td>
+          <span className="badge badge-primary">{props.stock.total_price}</span>
+        </td>
+        <td>
+          <span className="badge badge-primary">
+            {props.stock.previous_close}
+          </span>
+        </td>
+        <td>
+          <span className="badge badge-primary">
+            {props.stock.current_price}
+          </span>
+        </td>
+        <td>
+          <span
+            className={
+              props.stock.daily_change >= 0
+                ? "badge badge-success"
+                : "badge badge-danger"
+            }
+          >
+            {props.stock.daily_change}
+          </span>
+        </td>
+        <td>
+          <span className="badge badge-primary">
+            {props.stock.current_value}
+          </span>
+        </td>
+        <td>
+          <span
+            className={
+              props.stock.total_gain_loss >= 0
+                ? "badge badge-success"
+                : "badge badge-danger"
+            }
+          >
+            {props.stock.total_gain_loss}
+          </span>
+        </td>
+      </tr>
 
-  render() {
-    return (
-      <React.Fragment>
-        <tr
-          onClick={() => {
-            this.handleClick();
-          }}
-        >
-          <th scope="row">{this.props.stock.symbol}</th>
-          <td>
-            <span className="badge badge-primary">
-              {this.props.stock.total_shares}
-            </span>
-          </td>
-          <td>
-            <span className="badge badge-primary">
-              {this.props.stock.total_price}
-            </span>
-          </td>
-          <td>
-            <span className="badge badge-primary">
-              {this.props.stock.previous_close}
-            </span>
-          </td>
-          <td>
-            <span className="badge badge-primary">
-              {this.props.stock.current_price}
-            </span>
-          </td>
-          <td>
-            <span
-              className={
-                this.props.stock.daily_change >= 0
-                  ? "badge badge-success"
-                  : "badge badge-danger"
-              }
-            >
-              {this.props.stock.daily_change}
-            </span>
-          </td>
-          <td>
-            <span className="badge badge-primary">
-              {this.props.stock.current_value}
-            </span>
-          </td>
-          <td>
-            <span
-              className={
-                this.props.stock.total_gain_loss >= 0
-                  ? "badge badge-success"
-                  : "badge badge-danger"
-              }
-            >
-              {this.props.stock.total_gain_loss}
-            </span>
-          </td>
-        </tr>
-
-        {this.props.stock.id === this.props.selectedStockId ? (
-          <StockSell symbol={this.props.stock.symbol} />
-        ) : null}
-      </React.Fragment>
-    );
-  }
-}
+      {props.stock.id === props.selectedStockId ? (
+        <StockSell symbol={props.stock.symbol} />
+      ) : null}
+    </React.Fragment>
+  );
+};
 
 export default StockRow;
