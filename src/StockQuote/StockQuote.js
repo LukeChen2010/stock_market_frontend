@@ -115,16 +115,14 @@ class StockQuote extends React.Component {
             ""
           )}
 
-          {this.state.message === "Success!" ? (
-            <div className="badge badge-success text-center">
-              {this.state.message}
-            </div>
-          ) : (
-            ""
-          )}
-
-          {this.state.message !== "Success!" && this.state.message ? (
-            <div className="badge badge-danger text-center">
+          {this.state.message ? (
+            <div
+              className={
+                this.state.message === "Success!"
+                  ? "badge badge-success text-center"
+                  : "badge badge-danger text-center"
+              }
+            >
               {this.state.message}
             </div>
           ) : (
