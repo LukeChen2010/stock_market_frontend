@@ -7,7 +7,7 @@ import StockList from "./StockList/StockList.js";
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
+      <div>
         <Profile />
         <StockQuote />
         <StockList />
