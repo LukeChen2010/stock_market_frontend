@@ -6,6 +6,9 @@ class StockList extends React.Component {
   state = {
     stocks: [],
     selectedStockId: null,
+    selectedStockSymbol: "",
+    quantity: 0,
+    message: "",
   };
 
   fetchProfile = () => {
@@ -18,19 +21,62 @@ class StockList extends React.Component {
       });
   };
 
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  handleSellSubmit = (event) => {
+    event.preventDefault();
+
+    const json = {
+      symbol: this.state.selectedStockSymbol,
+      total_shares: parseInt(this.state.quantity),
+      is_sell: true,
+    };
+
+    fetch("http://localhost:3000/users/1/transactions/new", {
+      headers: {
+        Authorization: "authenticity_token",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(json),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (json.message === "insufficient_shares") {
+          this.setState({ message: "Insufficient shares!" });
+        } else if (json.message === "input_error") {
+          this.setState({ message: "Input error!" });
+        } else {
+          this.setState({ message: "Success!" });
+        }
+      });
+  };
+
   componentDidMount() {
     this.fetchProfile();
   }
 
-  selectStock = (id) => {
+  selectStock = (id, symbol) => {
     this.setState({
       selectedStockId: id,
+      selectedStockSymbol: symbol,
     });
   };
 
   renderTableRows() {
     return this.state.stocks.map((stock) => (
-      <StockRow selectedStockId={this.state.selectedStockId} stock={stock} />
+      <StockRow
+        formData={this.state}
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSellSubmit}
+        selectedStockId={this.state.selectedStockId}
+        selectStock={this.selectStock}
+        stock={stock}
+      />
     ));
   }
 

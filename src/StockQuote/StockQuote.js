@@ -41,7 +41,7 @@ class StockQuote extends React.Component {
       });
   };
 
-  handlePurchaseSubmit = (event) => {
+  handleBuySubmit = (event) => {
     event.preventDefault();
 
     const json = {
@@ -108,7 +108,7 @@ class StockQuote extends React.Component {
             <StockBuy
               formData={this.state}
               handleChange={this.handleChange}
-              handleSubmit={this.handlePurchaseSubmit}
+              handleSubmit={this.handleBuySubmit}
             />
           ) : (
             ""

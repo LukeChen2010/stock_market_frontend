@@ -8,9 +8,9 @@ const StockRow = (props) => {
       <tr
         onClick={() => {
           if (props.selectedStockId === props.stock.id) {
-            props.selectStock(null);
+            props.selectStock(null, "");
           } else {
-            props.selectStock(props.stock.id);
+            props.selectStock(props.stock.id, props.stock.symbol);
           }
         }}
       >
@@ -63,7 +63,11 @@ const StockRow = (props) => {
       </tr>
 
       {props.stock.id === props.selectedStockId ? (
-        <StockSell symbol={props.stock.symbol} />
+        <StockSell
+          formData={props.formdata}
+          handleChange={props.handleChange}
+          handleSubmit={props.handleSubmit}
+        />
       ) : null}
     </React.Fragment>
   );
