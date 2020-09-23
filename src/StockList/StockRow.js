@@ -64,7 +64,7 @@ const StockRow = (props) => {
 
       {props.stock.id === props.selectedStockId ? (
         <StockSell
-          formData={props.formdata}
+          formData={props.formData}
           handleChange={props.handleChange}
           handleSubmit={props.handleSubmit}
         />
