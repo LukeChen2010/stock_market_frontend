@@ -18,6 +18,13 @@ const TransactionRow = (props) => {
         </td>
         <td>
           <span className="badge badge-primary">
+            {(
+              props.transaction.total_price / props.transaction.total_shares
+            ).toFixed(2)}
+          </span>
+        </td>
+        <td>
+          <span className="badge badge-primary">
             {props.transaction.is_sell ? "Sell" : "Buy"}
           </span>
         </td>

@@ -30,13 +30,14 @@ class TransactionList extends React.Component {
   render() {
     return (
       <div className="card border-dark mb-3">
-        <div className="card-header display-4">Your Stocks</div>
+        <div className="card-header display-4">Your Transactions</div>
         <table className="table">
           <thead>
             <tr>
               <th scope="col">Symbol</th>
               <th scope="col">Shares</th>
               <th scope="col">Price Paid (USD $)</th>
+              <th scope="col">Price Paid Per Share (USD $)</th>
               <th scope="col">Buy/Sell</th>
             </tr>
           </thead>
