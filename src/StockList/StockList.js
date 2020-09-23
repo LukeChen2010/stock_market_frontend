@@ -30,11 +30,7 @@ class StockList extends React.Component {
 
   renderTableRows() {
     return this.state.stocks.map((stock) => (
-      <StockRow
-        selectStock={this.selectStock}
-        selectedStockId={this.state.selectedStockId}
-        stock={stock}
-      />
+      <StockRow selectedStockId={this.state.selectedStockId} stock={stock} />
     ));
   }
 
