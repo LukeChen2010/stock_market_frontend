@@ -17,7 +17,6 @@ class StockSell extends React.Component {
     event.preventDefault();
 
     const json = {
-      user_id: 1,
       symbol: this.props.symbol,
       total_shares: parseInt(this.state.quantity),
       is_sell: true,
