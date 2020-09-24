@@ -19,7 +19,7 @@ class StockQuote extends React.Component {
 
   handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value.toUpperCase(),
     });
   };
 
@@ -39,6 +39,14 @@ class StockQuote extends React.Component {
           currentPrice: json.current_price,
         });
       });
+
+    console.log(this.state.name);
+
+    if (!this.state.name) {
+      this.setState({
+        message: "Could not find stock symbol " + this.state.symbol + "!",
+      });
+    }
   };
 
   handleBuySubmit = (event) => {
@@ -49,8 +57,6 @@ class StockQuote extends React.Component {
       total_shares: parseInt(this.state.quantity),
       is_sell: false,
     };
-
-    console.log(JSON.stringify(json));
 
     fetch("http://localhost:3000/users/1/transactions/new", {
       headers: {
