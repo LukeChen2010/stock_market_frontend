@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import StockQuote from "./StockQuote/StockQuote.js";
@@ -25,4 +26,8 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return { items: state.items };
+};
+
+export default connect(mapStateToProps)(App);

@@ -39,14 +39,6 @@ class StockQuote extends React.Component {
           currentPrice: json.current_price,
         });
       });
-
-    console.log(this.state.name);
-
-    if (!this.state.name) {
-      this.setState({
-        message: "Could not find stock symbol " + this.state.symbol + "!",
-      });
-    }
   };
 
   handleBuySubmit = (event) => {
