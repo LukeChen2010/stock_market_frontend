@@ -1,27 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
 import "../App.css";
+import { fetchProfile } from "../actions/fetchProfile";
 import ProfileAttribute from "./ProfileAttribute.js";
 
 class Profile extends React.Component {
-  state = {
-    portfolioValue: "",
-    balance: "",
-  };
-
   componentDidMount() {
-    this.interval = setInterval(this.fetchProfile(), 15000);
+    this.interval = setInterval(this.props.fetchProfile(), 15000);
   }
-
-  fetchProfile = () => {
-    fetch("http://localhost:3000/users/1")
-      .then((response) => response.json())
-      .then((json) => {
-        this.setState({
-          portfolioValue: json.portfolio_value,
-          balance: json.balance,
-        });
-      });
-  };
 
   render() {
     return (
@@ -32,11 +18,11 @@ class Profile extends React.Component {
             <div>
               <ProfileAttribute
                 attributeName=" Portfolio Value (USD $): "
-                attributeValue={this.state.portfolioValue}
+                attributeValue={this.props.portfolioValue}
               />
               <ProfileAttribute
                 attributeName="Available to Spend (USD $):"
-                attributeValue={this.state.balance}
+                attributeValue={this.props.balance}
               />
             </div>
           </div>
@@ -46,4 +32,15 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+const mapDispatchToProps = (dispatch) => {
+  return { fetchProfile: () => dispatch(fetchProfile()) };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    portfolioValue: state.portfolioValue,
+    balance: state.balance,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
