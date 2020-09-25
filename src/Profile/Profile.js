@@ -17,12 +17,12 @@ class Profile extends React.Component {
           <div className="card-body text-left">
             <div>
               <ProfileAttribute
-                attributeName=" Portfolio Value (USD $): "
-                attributeValue={this.props.portfolioValue}
-              />
-              <ProfileAttribute
                 attributeName="Available to Spend (USD $):"
                 attributeValue={this.props.balance}
+              />
+              <ProfileAttribute
+                attributeName=" Portfolio Value (USD $): "
+                attributeValue={this.props.portfolio_value}
               />
             </div>
           </div>
@@ -38,8 +38,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    portfolioValue: state.portfolioValue,
-    balance: state.balance,
+    balance: state.profile.balance,
+    portfolio_value: state.profile.portfolio_value,
   };
 };
 

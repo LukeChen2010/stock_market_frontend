@@ -1,7 +1,14 @@
 export default function AppReducer(
   state = {
-    portfolioValue: 0,
-    balance: 0,
+    profile: { id: null, balance: 0, portfolio_value: 0 },
+    stockQuote: {
+      symbol: "",
+      name: "",
+      exchange: "",
+      industry: "",
+      previous_close: 0,
+      current_price: 0,
+    },
     requesting: false,
   },
   action
@@ -9,14 +16,13 @@ export default function AppReducer(
   switch (action.type) {
     case "START_GET_PROFILE_REQUEST": {
       return {
-        ...state,
+        profile: action.profile,
         requesting: true,
       };
     }
     case "GET_PROFILE": {
       return {
-        portfolioValue: action.profile.portfolio_value,
-        balance: action.profile.balance,
+        profile: action.profile,
         requesting: false,
       };
     }
