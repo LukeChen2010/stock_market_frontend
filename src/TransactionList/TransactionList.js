@@ -35,10 +35,10 @@ class TransactionList extends React.Component {
           <thead>
             <tr>
               <th scope="col">Symbol</th>
-              <th scope="col">Shares</th>
-              <th scope="col">Price Paid (USD $)</th>
-              <th scope="col">Price Paid Per Share (USD $)</th>
               <th scope="col">Buy/Sell</th>
+              <th scope="col">Shares</th>
+              <th scope="col">Price (USD $)</th>
+              <th scope="col">Price Per Share (USD $)</th>
             </tr>
           </thead>
           <tbody>{this.renderTableRows()}</tbody>

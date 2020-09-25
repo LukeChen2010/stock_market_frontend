@@ -8,6 +8,11 @@ const TransactionRow = (props) => {
         <th scope="row">{props.transaction.symbol}</th>
         <td>
           <span className="badge badge-primary">
+            {props.transaction.is_sell ? "Sell" : "Buy"}
+          </span>
+        </td>
+        <td>
+          <span className="badge badge-primary">
             {props.transaction.total_shares}
           </span>
         </td>
@@ -21,11 +26,6 @@ const TransactionRow = (props) => {
             {(
               props.transaction.total_price / props.transaction.total_shares
             ).toFixed(2)}
-          </span>
-        </td>
-        <td>
-          <span className="badge badge-primary">
-            {props.transaction.is_sell ? "Sell" : "Buy"}
           </span>
         </td>
       </tr>
