@@ -2,9 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import "../App.css";
 import { fetchProfile } from "../actions/fetchProfile";
-import ProfileAttribute from "./ProfileAttribute.js";
+import PortfolioAttribute from "./PortfolioAttribute.js";
 
-class Profile extends React.Component {
+class Portfolio extends React.Component {
   componentDidMount() {
     this.interval = setInterval(this.props.fetchProfile(), 15000);
   }
@@ -16,11 +16,11 @@ class Profile extends React.Component {
           <div className="card-header display-4">Your Portfolio</div>{" "}
           <div className="card-body text-left">
             <div>
-              <ProfileAttribute
+              <PortfolioAttribute
                 attributeName="Available to Spend (USD $):"
                 attributeValue={this.props.balance}
               />
-              <ProfileAttribute
+              <PortfolioAttribute
                 attributeName=" Portfolio Value (USD $): "
                 attributeValue={this.props.portfolio_value}
               />
@@ -44,4 +44,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Portfolio);
