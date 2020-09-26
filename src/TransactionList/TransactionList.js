@@ -7,7 +7,7 @@ class TransactionList extends React.Component {
     transactions: [],
   };
 
-  fetchProfile = () => {
+  fetchTransactions = () => {
     fetch("http://localhost:3000/users/1/transactions")
       .then((response) => response.json())
       .then((json) => {
@@ -18,12 +18,16 @@ class TransactionList extends React.Component {
   };
 
   componentDidMount() {
-    this.fetchProfile();
+    this.interval = setInterval(this.fetchTransactions, 10000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   renderTableRows() {
     return this.state.transactions.map((transaction) => (
-      <TransactionRow transaction={transaction} />
+      <TransactionRow transaction={transaction} key={transaction.id} />
     ));
   }
 

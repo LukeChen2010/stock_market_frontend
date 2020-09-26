@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import "../App.css";
 import StockRow from "./StockRow.js";
 
@@ -13,7 +12,6 @@ class StockList extends React.Component {
   };
 
   fetchStocks = () => {
-    console.log("Stock list updated");
     fetch("http://localhost:3000/users/1/stocks")
       .then((response) => response.json())
       .then((json) => {
@@ -59,7 +57,11 @@ class StockList extends React.Component {
   };
 
   componentDidMount() {
-    this.fetchStocks();
+    this.interval = setInterval(this.fetchStocks, 10000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   selectStock = (id, symbol) => {
@@ -78,6 +80,7 @@ class StockList extends React.Component {
         selectedStockId={this.state.selectedStockId}
         selectStock={this.selectStock}
         stock={stock}
+        key={stock.id}
       />
     ));
   }
@@ -110,10 +113,5 @@ class StockList extends React.Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    forceUpdate: state.forceUpdate,
-  };
-};
 
-export default connect(mapStateToProps)(StockList);
+export default StockList;
