@@ -67,7 +67,7 @@ class StockQuote extends React.Component {
           this.setState({ message: "Input error!" });
         } else {
           this.setState({ message: "Success!" });
-          //this.props.dispatch({ type: "FORCE_UPDATE" });
+          this.props.dispatch({ type: "FORCE_UPDATE" });
         }
       });
   };

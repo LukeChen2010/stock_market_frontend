@@ -6,7 +6,7 @@ import PortfolioAttribute from "./PortfolioAttribute.js";
 
 class Portfolio extends React.Component {
   componentDidMount() {
-    this.interval = setInterval(this.props.fetchProfile(), 15000);
+    this.interval = setInterval(this.props.fetchProfile(), 1000);
   }
 
   render() {

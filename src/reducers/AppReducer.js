@@ -10,6 +10,7 @@ export default function AppReducer(
     case "FORCE_UPDATE": {
       console.log("CALLED");
       return {
+        profile: state.profile,
         forceUpdate: !state.forceUpdate,
       };
     }

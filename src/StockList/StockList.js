@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import "../App.css";
 import StockRow from "./StockRow.js";
 
@@ -11,7 +12,8 @@ class StockList extends React.Component {
     message: "",
   };
 
-  fetchProfile = () => {
+  fetchStocks = () => {
+    console.log("Stock list updated");
     fetch("http://localhost:3000/users/1/stocks")
       .then((response) => response.json())
       .then((json) => {
@@ -57,7 +59,7 @@ class StockList extends React.Component {
   };
 
   componentDidMount() {
-    this.fetchProfile();
+    this.fetchStocks();
   }
 
   selectStock = (id, symbol) => {
@@ -108,5 +110,10 @@ class StockList extends React.Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    forceUpdate: state.forceUpdate,
+  };
+};
 
-export default StockList;
+export default connect(mapStateToProps)(StockList);
