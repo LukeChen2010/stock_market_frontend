@@ -38,6 +38,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
+    forceUpdate: state.forceUpdate,
     balance: state.profile.balance,
     portfolio_value: state.profile.portfolio_value,
   };

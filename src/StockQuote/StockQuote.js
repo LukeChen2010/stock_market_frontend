@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import "../App.css";
 import StockAttribute from "./StockAttribute.js";
 import StockQuoteInput from "./StockQuoteInput.js";
@@ -66,6 +67,7 @@ class StockQuote extends React.Component {
           this.setState({ message: "Input error!" });
         } else {
           this.setState({ message: "Success!" });
+          //this.props.dispatch({ type: "FORCE_UPDATE" });
         }
       });
   };
@@ -131,4 +133,10 @@ class StockQuote extends React.Component {
   }
 }
 
-export default StockQuote;
+const mapStateToProps = (state) => {
+  return {
+    forceUpdate: state.forceUpdate,
+  };
+};
+
+export default connect(mapStateToProps)(StockQuote);
