@@ -2,9 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 
 class Header extends React.Component {
-  handleInputChange = (event) => {
-    this.props.dispatch({ type: "TOGGLE_DARK_MODE" });
-  };
+  componentDidUpdate() {
+    document.body.style.backgroundColor = this.props.darkMode
+      ? "#5c5c5c"
+      : "#ffffff";
+  }
 
   render() {
     return (

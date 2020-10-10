@@ -15,7 +15,14 @@ class DarkMode extends React.Component {
           id="customSwitch1"
           onChange={this.handleInputChange}
         ></input>
-        <label className="custom-control-label" htmlFor="customSwitch1">
+        <label
+          className={
+            this.props.darkMode
+              ? "custom-control-label text-white"
+              : "custom-control-label"
+          }
+          htmlFor="customSwitch1"
+        >
           Dark Mode
         </label>
       </div>
