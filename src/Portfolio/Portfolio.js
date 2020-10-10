@@ -9,6 +9,12 @@ class Portfolio extends React.Component {
     this.interval = setInterval(this.props.fetchProfile(), 1000);
   }
 
+  componentDidUpdate() {
+    document.body.style.backgroundColor = this.props.darkMode
+      ? "#5c5c5c"
+      : "#ffffff";
+  }
+
   render() {
     return (
       <div>
