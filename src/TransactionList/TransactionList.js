@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import "../App.css";
 import TransactionRow from "./TransactionRow.js";
 
@@ -33,9 +34,15 @@ class TransactionList extends React.Component {
 
   render() {
     return (
-      <div className="card border-dark mb-3">
+      <div
+        className={
+          this.props.darkMode
+            ? "card text-white bg-dark mb-3"
+            : "card bg-light mb-3"
+        }
+      >
         <div className="card-header display-4">Your Transactions</div>
-        <table className="table">
+        <table className={this.props.darkMode ? "table text-white" : "table"}>
           <thead>
             <tr>
               <th scope="col">Symbol</th>
@@ -52,4 +59,10 @@ class TransactionList extends React.Component {
   }
 }
 
-export default TransactionList;
+const mapStateToProps = (state) => {
+  return {
+    darkMode: state.darkMode,
+  };
+};
+
+export default connect(mapStateToProps)(TransactionList);

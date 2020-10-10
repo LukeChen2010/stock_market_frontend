@@ -1,18 +1,12 @@
-export default function AppReducer(
+export default function PortfolioReducer(
   state = {
     profile: { id: null, balance: 0, portfolio_value: 0 },
-    forceUpdate: false,
     requesting: false,
+    darkMode: false,
   },
   action
 ) {
   switch (action.type) {
-    case "FORCE_UPDATE": {
-      return {
-        profile: state.profile,
-        forceUpdate: !state.forceUpdate,
-      };
-    }
     case "START_GET_PROFILE_REQUEST": {
       return {
         profile: action.profile,
@@ -23,6 +17,12 @@ export default function AppReducer(
       return {
         profile: action.profile,
         requesting: false,
+      };
+    }
+    case "TOGGLE_DARK_MODE": {
+      return {
+        profile: state.profile,
+        darkMode: !state.darkMode,
       };
     }
     default:

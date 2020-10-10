@@ -12,7 +12,14 @@ class Portfolio extends React.Component {
   render() {
     return (
       <div>
-        <div className="card border-dark mb-3" style={{ width: "24rem" }}>
+        <div
+          className={
+            this.props.darkMode
+              ? "card text-white bg-dark mb-3"
+              : "card bg-light mb-3"
+          }
+          style={{ width: "24rem" }}
+        >
           <div className="card-header display-4">Your Portfolio</div>{" "}
           <div className="card-body text-left">
             <div>
@@ -38,7 +45,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    forceUpdate: state.forceUpdate,
+    darkMode: state.darkMode,
     balance: state.profile.balance,
     portfolio_value: state.profile.portfolio_value,
   };

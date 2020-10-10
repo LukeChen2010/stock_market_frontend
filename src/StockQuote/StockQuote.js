@@ -67,14 +67,20 @@ class StockQuote extends React.Component {
           this.setState({ message: "Input error!" });
         } else {
           this.setState({ message: "Success!" });
-          this.props.dispatch({ type: "FORCE_UPDATE" });
         }
       });
   };
 
   render() {
     return (
-      <div className="card border-dark mb-3" style={{ width: "24rem" }}>
+      <div
+        className={
+          this.props.darkMode
+            ? "card text-white bg-dark mb-3"
+            : "card bg-light mb-3"
+        }
+        style={{ width: "24rem" }}
+      >
         <div className="card-header display-4">Get a Quote!</div>
         <div className="card-body text-left">
           <StockQuoteInput
@@ -135,7 +141,7 @@ class StockQuote extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    forceUpdate: state.forceUpdate,
+    darkMode: state.darkMode,
   };
 };
 

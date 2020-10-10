@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import "../App.css";
 import StockRow from "./StockRow.js";
 
@@ -87,14 +88,20 @@ class StockList extends React.Component {
 
   render() {
     return (
-      <div className="card border-dark mb-3">
+      <div
+        className={
+          this.props.darkMode
+            ? "card text-white bg-dark mb-3"
+            : "card bg-light mb-3"
+        }
+      >
         <div
           onClick={() => this.setState({ selectedStockId: null })}
           className="card-header display-4"
         >
           Your Stocks
         </div>
-        <table className="table">
+        <table className={this.props.darkMode ? "table text-white" : "table"}>
           <thead onClick={() => this.setState({ selectedStockId: null })}>
             <tr>
               <th scope="col">Symbol</th>
@@ -114,4 +121,10 @@ class StockList extends React.Component {
   }
 }
 
-export default StockList;
+const mapStateToProps = (state) => {
+  return {
+    darkMode: state.darkMode,
+  };
+};
+
+export default connect(mapStateToProps)(StockList);
